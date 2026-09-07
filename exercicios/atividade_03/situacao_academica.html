@@ -1,0 +1,413 @@
+<!--
+------------------------------------------------
+Sistema de situação acadêmica
+------------------------------------------------
+Desenvolva uma página que receba:
+    - nome do estudante;
+    - primeira nota;
+    - segunda nota;
+    - quantidade de faltas.
+
+Ao clicar em Calcular situação, o sistema deverá:
+    - calcular a média;
+    - verificar se as notas são válidas;
+    - verificar a quantidade de faltas;
+    - informar se o estudante está aprovado, em recuperação ou reprovado;
+    - exibir todos os dados no HTML.
+
+Regras:
+    - média maior ou igual a 7: aprovado;
+    - média entre 5 e 6,9: recuperação;
+    - média menor que 5: reprovado;
+    - mais de 20 faltas: reprovado por faltas, independentemente da média.
+
+EXTRA: ao clicar no botão limpar, limpe os campos do formulário
+-->
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Situação acadêmica</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="
+        min-h-screen bg-gray-100 px-4 py-10 text-gray-800
+    ">
+
+    <main class="
+            mx-auto
+            w-full
+            max-w-xl
+            overflow-hidden
+            rounded-3xl
+            border
+            border-gray-200
+            bg-white
+            shadow-lg
+            shadow-indigo-950/50
+            
+        ">
+        <header class="
+                border-b
+                border-gray-200
+                bg-blue-600
+                px-6
+                py-8
+                sm:px-8
+            ">
+            <div class="
+                    mb-4
+                    inline-flex
+                    h-12
+                    w-12
+                    items-center
+                    justify-center
+                    rounded-2xl
+                    bg-white/15
+                    text-2xl
+                    shadow-lg
+                    backdrop-blur
+                " aria-hidden="true">
+                🎓
+            </div>
+
+            <p class="
+                    mb-2
+                    text-sm
+                    font-semibold
+                    uppercase
+                    tracking-[0.2em]
+                    text-indigo-100
+                ">
+                Portal acadêmico
+            </p>
+
+            <h1 id="titulo" class="
+                    text-2xl
+                    font-bold
+                    tracking-tight
+                    text-white
+                    sm:text-3xl
+                ">
+                Consulta de situação acadêmica
+            </h1>
+
+            <p class="mt-3 max-w-md text-sm leading-6 text-indigo-100">
+                Informe os dados abaixo para consultar o desempenho do estudante.
+            </p>
+        </header>
+
+        <section class="space-y-5 p-6 sm:p-8">
+
+            <div class="campo">
+                <label for="nome" class="
+                        mb-2
+                        block
+                        text-sm
+                        font-semibold
+                        text-gray-700
+                    ">
+                    Nome do estudante
+                </label>
+
+                <input type="text" id="nome" placeholder="Digite o nome completo" autocomplete="name" class="
+                        w-full
+                        rounded-xl
+                        border
+                        border-gray-300
+                        bg-white
+                        px-4
+                        py-3
+                        text-gray-800
+                        outline-none
+                        transition
+                        placeholder:text-gray-500
+                        hover:border-slate-600
+                        focus:border-indigo-500
+                        focus:ring-4
+                        focus:ring-indigo-500/20
+                    ">
+            </div>
+
+            <div class="grid gap-5 sm:grid-cols-2">
+                <div class="campo">
+                    <label for="nota1" class="
+                            mb-2
+                            block
+                            text-sm
+                            font-semibold
+                            text-gray-700
+                        ">
+                        Primeira nota
+                    </label>
+
+                    <input type="number" id="nota1" step="0.1" min="0" max="10" placeholder="0,0" class="
+                            w-full
+                            rounded-xl
+                            border
+                            border-gray-300
+                            bg-white
+                            px-4
+                            py-3
+                            text-gray-800
+                            outline-none
+                            transition
+                            placeholder:text-gray-500
+                            hover:border-slate-600
+                            focus:border-indigo-500
+                            focus:ring-4
+                            focus:ring-indigo-500/20
+                        ">
+                </div>
+
+                <div class="campo">
+                    <label for="nota2" class="
+                            mb-2
+                            block
+                            text-sm
+                            font-semibold
+                            text-gray-700
+                        ">
+                        Segunda nota
+                    </label>
+
+                    <input type="number" id="nota2" step="0.1" min="0" max="10" placeholder="0,0" class="
+                            w-full
+                            rounded-xl
+                            border
+                            border-gray-300
+                            bg-white
+                            px-4
+                            py-3
+                            text-gray-800
+                            outline-none
+                            transition
+                            placeholder:text-gray-500
+                            hover:border-slate-600
+                            focus:border-indigo-500
+                            focus:ring-4
+                            focus:ring-indigo-500/20
+                        ">
+                </div>
+            </div>
+
+            <div class="campo">
+                <label for="faltas" class="
+                        mb-2
+                        block
+                        text-sm
+                        font-semibold
+                        text-gray-700
+                    ">
+                    Quantidade de faltas
+                </label>
+
+                <input type="number" id="faltas" min="0" placeholder="Digite o total de faltas" class="
+                        w-full
+                        rounded-xl
+                        border
+                        border-gray-300
+                        bg-white
+                        px-4
+                        py-3
+                        text-gray-800
+                        outline-none
+                        transition
+                        placeholder:text-gray-500
+                        hover:border-slate-600
+                        focus:border-indigo-500
+                        focus:ring-4
+                        focus:ring-indigo-500/20
+                    ">
+            </div>
+
+            <div class="grid gap-3 pt-2 sm:grid-cols-2">
+                <button id="btnCalcular" class="
+                        inline-flex
+                        w-full
+                        items-center
+                        justify-center
+                        rounded-xl
+                        bg-indigo-600
+                        px-5
+                        py-3
+                        font-semibold
+                        text-white
+                        shadow-lg
+                        shadow-indigo-950/40
+                        transition
+                        hover:-translate-y-0.5
+                        hover:bg-indigo-500
+                        focus:outline-none
+                        focus:ring-4
+                        focus:ring-indigo-500/30
+                        active:translate-y-0
+                    ">
+                    Calcular situação
+                </button>
+
+                <button id="btnLimpar" class="
+                        inline-flex
+                        w-full
+                        items-center
+                        justify-center
+                        rounded-xl
+                        border
+                        border-gray-300
+                        bg-gray-200
+                        px-5
+                        py-3
+                        font-semibold
+                        text-gray-700
+                        transition
+                        hover:-translate-y-0.5
+                        hover:border-slate-600
+                        hover:bg-gray-300
+                        focus:outline-none
+                        focus:ring-4
+                        focus:ring-slate-600/30
+                        active:translate-y-0
+                    ">
+                    Limpar formulário
+                </button>
+            </div>
+
+            <div id="resultado" aria-live="polite" class="
+                    mt-6
+                    rounded-2xl
+                    border
+                    border-gray-300
+                    bg-white
+                    p-5
+                    text-sm
+                    leading-7
+                    text-gray-700
+                    shadow-inner
+                    transition
+                    [&_h2]:mb-4
+                    [&_h2]:border-b
+                    [&_h2]:border-gray-300
+                    [&_h2]:pb-3
+                    [&_h2]:text-xl
+                    [&_h2]:font-bold
+                    [&_h2]:text-white
+                    [&_p]:border-b
+                    [&_p]:border-gray-200
+                    [&_p]:py-2
+                    [&_p:last-of-type]:mt-3
+                    [&_p:last-of-type]:rounded-xl
+                    [&_p:last-of-type]:border
+                    [&_p:last-of-type]:border-indigo-500/20
+                    [&_p:last-of-type]:bg-indigo-500/10
+                    [&_p:last-of-type]:px-4
+                    [&_p:last-of-type]:text-indigo-200
+                    [&_strong]:font-semibold
+                    [&_strong]:text-gray-800
+                    [&_small]:mt-4
+                    [&_small]:block
+                    [&_small]:text-gray-500
+                ">
+                Nenhum estudante consultado.
+            </div>
+
+        </section>
+
+        <footer class="
+                border-t
+                border-gray-200
+                bg-gray-100
+                px-6
+                py-4
+                text-center
+                text-xs
+                text-gray-500
+                sm:px-8
+            ">
+            Sistema de acompanhamento acadêmico
+        </footer>
+    </main>
+
+    <script>
+        let nomeCampo = document.querySelector('#nome');
+        let btnCalcular = document.querySelector('#btnCalcular');
+        let nota1Campo = document.querySelector("#nota1");
+        let nota2Campo = document.querySelector("#nota2");
+        let faltasCampo = document.querySelector("#faltas");
+        let resultadoCampo = document.querySelector("#resultado");
+
+        btnCalcular.addEventListener('click', function () {
+            let nome = nomeCampo.value
+            let nota1 = Number(nota1Campo.value)
+            let nota2 = Number(nota2Campo.value)
+            let faltas = Number(faltasCampo.value)
+
+            let media = (nota1 + nota2) / 2
+
+            if (nota1 < 0 || nota1 > 10 || nota2 < 0 || nota2 > 10) {
+                resultadoCampo.innerHTML = "NOTA INVÁLIDA"
+            } else if (faltas <= 20) {
+                if (media >= 7) {
+                    let situacao = "Aprovado!!"
+                    resultadoCampo.innerHTML = `
+                        <h2>Resultado do estudante</h2>
+
+                        <p><strong>Nome:</strong> ${nome}</p>
+                        <p><strong>Primeira nota:</strong> ${nota1}</p>
+                        <p><strong>Segunda nota:</strong> ${nota2}</p>
+                        <p><strong>Média:</strong> ${media.toFixed(1)}</p>
+                        <p><strong>Quantidade de faltas:</strong> ${faltas}</p>
+
+                        <p><strong>Situação:</strong> ${situacao}</p>
+                        `;
+                } else if (media >= 5 && media <= 6.9) {
+                    let situacao = "Recuperação!!"
+                    resultadoCampo.innerHTML = `
+                        <h2>Resultado do estudante</h2>
+
+                        <p><strong>Nome:</strong> ${nome}</p>
+                        <p><strong>Primeira nota:</strong> ${nota1}</p>
+                        <p><strong>Segunda nota:</strong> ${nota2}</p>
+                        <p><strong>Média:</strong> ${media.toFixed(1)}</p>
+                        <p><strong>Quantidade de faltas:</strong> ${faltas}</p>
+
+                        <p><strong>Situação:</strong> ${situacao}</p>
+                        `;
+                } else {
+                    let situacao = "Reprovado por nota!!"
+                    resultadoCampo.innerHTML = `
+                        <h2>Resultado do estudante</h2>
+
+                        <p><strong>Nome:</strong> ${nome}</p>
+                        <p><strong>Primeira nota:</strong> ${nota1}</p>
+                        <p><strong>Segunda nota:</strong> ${nota2}</p>
+                        <p><strong>Média:</strong> ${media.toFixed(1)}</p>
+                        <p><strong>Quantidade de faltas:</strong> ${faltas}</p>
+
+                        <p><strong>Situação:</strong> ${situacao}</p>
+                        `;
+                }
+            } else {
+                resultadoCampo.innerHTML = "REPROVADO POR FALTAS!!"
+            }
+
+        });
+
+        btnLimpar.addEventListener('click', function () {
+            nomeCampo.value = ""
+            nota1Campo.value = ""
+            nota2Campo.value = ""
+            faltas.value = ""
+
+        })
+    </script>
+
+</body>
+
+</html>

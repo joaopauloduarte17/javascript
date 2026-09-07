@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correção</title>
+</head>
+
+<body>
+    <script>
+        let valorCompra = Number(prompt('Digite o valor da compra'));
+        
+        // let desconto = 0;
+        // if(valorCompra > 200){
+        //     desconto = valor *0.10;
+        // }
+
+       let desconto = valorCompra > 200 ? valorCompra * 0.10 : 0;
+       let valorFinal = valorCompra - desconto;
+
+       console.log(valorCompra, desconto, valorFinal);
+        
+
+    </script>
+</body>
+
+</html>

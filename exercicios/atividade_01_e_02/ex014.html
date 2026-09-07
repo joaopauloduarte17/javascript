@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correção</title>
+</head>
+
+<body>
+    <script>
+        let saque = Number(prompt('Digite o valor do saque'));
+        let nota200 = 0;
+        let nota100 = 0;
+        let nota50 = 0;
+        let nota20 = 0;
+        let nota10 = 0;
+        let nota5 = 0;
+        let nota2 = 0;
+
+        if (saque >= 200) {
+            nota200 = (saque - (saque % 200)) / 200;
+            // saque = saque - nota200* 200;
+            // saque = saque % 200;
+            saque %= 200;
+        }
+        if (saque >= 100) {
+            nota100 = (saque - (saque % 100)) / 100;
+            saque %= 100;
+        }
+        if (saque >= 50) {
+            nota50 = (saque - (saque % 50)) / 50;
+            saque %= 50;
+        }
+        if (saque >= 20) {
+            nota20 = (saque - (saque % 20)) / 20;
+            saque %= 20;
+        }
+        if (saque >= 10) {
+            nota10 = (saque - (saque % 10)) / 10;
+            saque %= 10;
+        }
+        if (saque >= 5) {
+            nota5 = (saque - (saque % 5)) / 5;
+            saque %= 5;
+        }
+        if (saque >= 2) {
+            nota2 = (saque - (saque % 2)) / 2;
+            saque %= 2;
+        }
+
+        console.log(`Nota de 200: ${nota200}`);
+        console.log(`Nota de 100: ${nota100}`);
+        console.log(`Nota de 50: ${nota50}`);
+        console.log(`Nota de 20: ${nota20}`);
+        console.log(`Nota de 10: ${nota10}`);
+        console.log(`Nota de 5: ${nota5}`);
+        console.log(`Nota de 2: ${nota2}`);
+
+
+    </script>
+</body>
+
+</html>

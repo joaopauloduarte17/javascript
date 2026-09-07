@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Correção</title>
+</head>
+
+<body>
+    <script>
+        let totalAulas = Number(prompt('Quantas aulas tiveram?'));
+        let presencas = Number(prompt('Quantas o aluno veio?'));
+        
+        let n1 = Number(prompt('Digite a nota 1'));
+        let n2 = Number(prompt('Digite a nota 2'));
+        let n3 = Number(prompt('Digite a nota 3'));
+
+        let media = (n1+n2+n3)/3;
+        
+        // nao entendi esta linha? google it regra de 3 simples
+        let frequencia = (presencas/totalAulas)*100;
+        
+        // let situacao;
+        // if(media >= 6 && frenquencia >=75){
+        //     situacao = "APROVADO";
+        // }else{
+        //     situacao = "REPROVADO";
+        // }
+
+        let situacao = media >= 6 && frequencia >=75 ? 'APROVADO' : 'REPROVADO';
+        
+        console.log(`Média: ${media}`);
+        console.log(`Frequencia: ${frequencia}%`);
+        console.log(`Situação: ${situacao}`);
+        
+        
+        
+        
+        
+        
+
+
+
+
+
+
+
+
+        
+
+        
+
+    </script>
+</body>
+
+</html>
